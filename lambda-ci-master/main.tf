@@ -1,12 +1,14 @@
 // Provider configuration
 provider "aws" {
   region = "${var.region}"
+  access_key = "AKIATQLIKQX3NZSW5O7J"
+  secret_key = "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"
 }
 
 // S3 bucket
 resource "aws_s3_bucket" "bucket" {
   bucket = "${var.bucket}"
-  acl    = "private"
+  acl    = "public"
 }
 
 // Jenkins slave instance profile
