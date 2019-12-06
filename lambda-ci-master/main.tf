@@ -113,7 +113,7 @@ EOF
 
 // Lambda function
 resource "aws_lambda_function" "function" {
-  filename      = "deployment.zip"
+  filename      = "lambda-ci-master/deployment.zip"
   function_name = "Fibonacci"
   role          = "arn:aws:iam::241273832950:role/terraform_lambda_deploy"
   handler       = "main"
