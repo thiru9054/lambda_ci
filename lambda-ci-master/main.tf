@@ -90,32 +90,32 @@ EOF
 //}
 
 // Lambda IAM role
-resource "aws_iam_role" "lambda_role" {
-  name = "FibonacciFunctionRole"
-  path = "/"
-
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-               "Service": "lambda.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Sid": ""
-        }
-    ]
-}
-EOF
-}
+//resource "aws_iam_role" "lambda_role" {
+//  name = "FibonacciFunctionRole"
+//  path = "/"
+//
+//  assume_role_policy = <<EOF
+//{
+//    "Version": "2012-10-17",
+//    "Statement": [
+//        {
+//            "Action": "sts:AssumeRole",
+//            "Principal": {
+//               "Service": "lambda.amazonaws.com"
+//            },
+//            "Effect": "Allow",
+//            "Sid": ""
+//        }
+//    ]
+//}
+//EOF
+//}
 
 // Lambda function
 resource "aws_lambda_function" "function" {
   filename      = "deployment.zip"
   function_name = "Fibonacci"
-  role          = "arn:aws:iam::241273832950:role/accenture-mcd-lambda-role"
+  role          = "arn:aws:iam::241273832950:role/terraform_lambda_deploy"
   handler       = "main"
   runtime       = "go1.x"
 }
