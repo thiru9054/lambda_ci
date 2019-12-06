@@ -1,8 +1,6 @@
 // Provider configuration
 provider "aws" {
   region = "${var.region}"
-  access_key = "AKIATQLIKQX3NZSW5O7J"
-  secret_key = "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"
 }
 
 // S3 bucket
@@ -117,9 +115,9 @@ EOF
 resource "aws_lambda_function" "function" {
   filename      = "deployment.zip"
   function_name = "Fibonacci"
-  role          = "arn:aws:iam::241273832950:role/accenture-mcd-lambda-role"
+  role          = "${aws_iam_role.lambda_role.arn}"
   handler       = "main"
   runtime       = "go1.x"
 }
 
-// role = "${aws_iam_role.lambda_role.arn}"
+//   role          = "arn:aws:iam::241273832950:role/accenture-mcd-lambda-role"
