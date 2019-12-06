@@ -115,7 +115,7 @@ EOF
 resource "aws_lambda_function" "function" {
   filename      = "deployment.zip"
   function_name = "Fibonacci"
-  role          = "${aws_iam_role.lambda_role.arn}"
+  role          = "arn:aws:iam::241273832950:role/accenture-mcd-lambda-role"
   handler       = "main"
   runtime       = "go1.x"
 }
