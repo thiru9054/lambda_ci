@@ -99,9 +99,7 @@ resource "aws_iam_role" "lambda_role" {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Action": [
-              "sts:AssumeRole",
-              "iam:*"
+            "Action": "iam:*",
             "Principal": {
                "Service": "lambda.amazonaws.com"
             },
