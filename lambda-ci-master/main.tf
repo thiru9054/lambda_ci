@@ -10,31 +10,31 @@ resource "aws_s3_bucket" "bucket" {
 }
 
 // Jenkins slave instance profile
-resource "aws_iam_instance_profile" "worker_profile" {
-  name = "JenkinsWorkerProfile"
-  role = "${aws_iam_role.worker_role.name}"
-}
-
-resource "aws_iam_role" "worker_role" {
-  name = "JenkinsBuildRole"
-  path = "/"
-
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-               "Service": "ec2.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Sid": ""
-        }
-    ]
-}
-EOF
-}
+//resource "aws_iam_instance_profile" "worker_profile" {
+//  name = "JenkinsWorkerProfile"
+//  role = "${aws_iam_role.worker_role.name}"
+//}
+//
+//resource "aws_iam_role" "worker_role" {
+//  name = "JenkinsBuildRole"
+//  path = "/"
+//
+//  assume_role_policy = <<EOF
+//{
+//    "Version": "2012-10-17",
+//    "Statement": [
+//        {
+//            "Action": "sts:AssumeRole",
+//            "Principal": {
+//               "Service": "ec2.amazonaws.com"
+//            },
+//            "Effect": "Allow",
+//            "Sid": ""
+//        }
+//    ]
+//}
+//EOF
+//}
 
 resource "aws_iam_policy" "s3_policy" {
   name = "PushToS3Policy"
@@ -79,15 +79,15 @@ resource "aws_iam_policy" "lambda_policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "worker_s3_attachment" {
-  role       = "${aws_iam_role.worker_role.name}"
-  policy_arn = "${aws_iam_policy.s3_policy.arn}"
-}
-
-resource "aws_iam_role_policy_attachment" "worker_lambda_attachment" {
-  role       = "${aws_iam_role.worker_role.name}"
-  policy_arn = "${aws_iam_policy.lambda_policy.arn}"
-}
+//resource "aws_iam_role_policy_attachment" "worker_s3_attachment" {
+//  role       = "${aws_iam_role.worker_role.name}"
+//  policy_arn = "${aws_iam_policy.s3_policy.arn}"
+//}
+//
+//resource "aws_iam_role_policy_attachment" "worker_lambda_attachment" {
+//  role       = "${aws_iam_role.worker_role.name}"
+//  policy_arn = "${aws_iam_policy.lambda_policy.arn}"
+//}
 
 // Lambda IAM role
 resource "aws_iam_role" "lambda_role" {
